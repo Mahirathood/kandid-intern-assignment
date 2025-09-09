@@ -1,4 +1,3 @@
-// usre login
 "use client";
 
 import { signIn } from "next-auth/react";
@@ -8,21 +7,30 @@ import { useState } from "react";
 
 export default function LoginPage() {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
+
     const form = new FormData(e.currentTarget);
     const email = form.get("email") as string;
     const password = form.get("password") as string;
 
     const res = await signIn("credentials", {
+      redirect: false, // don’t auto redirect, check result first
       email,
       password,
-      redirect: true,
-      callbackUrl: "/dashboard",
     });
 
-    if (res?.error) setError("Invalid email or password");
+    if (res?.error) {
+      setError("Invalid email or password");
+    } else {
+      window.location.href = "/dashboard"; // ✅ manual redirect
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -66,9 +74,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
+            disabled={loading}
             className="w-full py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
