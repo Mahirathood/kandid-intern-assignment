@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+# Kandid Full Stack Intern Assignment
+
+A Next.js 15+ application replicating Linkbird.ai's Leads and Campaigns UI.
+
+## Tech Stack
+- Next.js 15 (App Router)
+- Tailwind CSS + shadcn/ui
+- PostgreSQL + Drizzle ORM
+- Better Auth (Google + Email)
+- Zustand + TanStack Query
+
+## Setup
+
+1. Clone repo
+2. `npm install`
+3. Set up PostgreSQL (Docker or Neon)
+4. Add `.env.local` with DB and OAuth credentials
+5. Run `npx drizzle-kit push`
+6. `npm run dev`
+
+## Deployment
+Deployed on Vercel: https://kandid-intern-assignment.vercel.app
